@@ -900,6 +900,11 @@ Transform:
   m_Father: {fileID: 543701394}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &65811516 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1964703377666402, guid: ede51cbdab73daa4c9485853c71abb5a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1573891711}
 --- !u!1 &71891162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,7 +1284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 137768672}
   - component: {fileID: 137768673}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3342,6 +3347,11 @@ Transform:
   m_Father: {fileID: 1434222442}
   m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &317381458 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1096341613770800, guid: ede51cbdab73daa4c9485853c71abb5a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1573891711}
 --- !u!1 &325464471
 GameObject:
   m_ObjectHideFlags: 0
@@ -3522,7 +3532,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 344245781}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4437,7 +4447,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 432668600}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5376,7 +5386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 527122420}
   - component: {fileID: 527122421}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Trees 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5428,7 +5438,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1932722109
-  m_SortingLayer: -2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2db61daccc0aa9c409ea373530aa6bba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6297,7 +6307,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -506559949
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd2e509c27a036b44a3dea4db16e0acf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7855,7 +7865,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -506559949
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd2e509c27a036b44a3dea4db16e0acf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8882,7 +8892,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -506559949
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd2e509c27a036b44a3dea4db16e0acf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9498,7 +9508,7 @@ GameObject:
   - component: {fileID: 931040733}
   - component: {fileID: 931040732}
   - component: {fileID: 931040734}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: moon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9537,7 +9547,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -970444639
-  m_SortingLayer: -3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 48fe21f02f0db424da67b210c1079107, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9547,7 +9557,7 @@ SpriteRenderer:
   m_Size: {x: 3.72, y: 2.65}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &931040733
 Transform:
@@ -9784,7 +9794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 952001271}
   - component: {fileID: 952001270}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: BackGround 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9823,7 +9833,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -970444639
-  m_SortingLayer: -3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec1e04f744c5f3b4e997048a4cfb235d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10362,7 +10372,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &974734502
 GameObject:
@@ -11912,6 +11922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a738a9c48f78f489749ca63bdf7b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 100
   maxSpeed: 10
   groundCheck: {fileID: 201649468}
   whatIsGround:
@@ -11987,12 +11998,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1112768313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.75, y: -1.56, z: 1.56}
+  m_LocalPosition: {x: -3.75, y: -1.56, z: -2.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 201649468}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1112768318
 Rigidbody2D:
@@ -12579,7 +12590,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158529484
 GameObject:
@@ -13449,7 +13460,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1232975250}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13740,7 +13751,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1246806374
 BoxCollider2D:
@@ -13975,7 +13986,7 @@ GameObject:
   - component: {fileID: 1263304376}
   - component: {fileID: 1263304375}
   - component: {fileID: 1263304374}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: mountain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14039,7 +14050,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -921308633
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 07e6ea7d9dd46134bb43d52a895975d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14049,7 +14060,7 @@ SpriteRenderer:
   m_Size: {x: 13.47, y: 7.39}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &1263304376
 Transform:
@@ -14369,7 +14380,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1273871042}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: BackgroungGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14391,7 +14402,7 @@ Transform:
   - {fileID: 137768672}
   - {fileID: 1394159915}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1279539734
 GameObject:
@@ -15860,7 +15871,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -506559949
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cdf1bee498366e94294c726851a0106f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15893,7 +15904,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1367581834}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16267,7 +16278,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1394159915}
   - component: {fileID: 1394159916}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Trees
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16453,7 +16464,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -506559949
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd2e509c27a036b44a3dea4db16e0acf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16487,7 +16498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1400495031}
   - component: {fileID: 1400495033}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: BackGround 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16539,7 +16550,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -970444639
-  m_SortingLayer: -3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec1e04f744c5f3b4e997048a4cfb235d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16661,7 +16672,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -506559949
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd2e509c27a036b44a3dea4db16e0acf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -16694,7 +16705,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1426303616}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17171,7 +17182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1475235877}
   - component: {fileID: 1475235878}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Trees 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17223,7 +17234,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1932722109
-  m_SortingLayer: -2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2db61daccc0aa9c409ea373530aa6bba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -18166,7 +18177,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1526256508
 GameObject:
@@ -18684,6 +18695,78 @@ Transform:
   m_Father: {fileID: 1409843251}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1573891711
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4925377395752782, guid: ede51cbdab73daa4c9485853c71abb5a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.5585023
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925377395752782, guid: ede51cbdab73daa4c9485853c71abb5a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925377395752782, guid: ede51cbdab73daa4c9485853c71abb5a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925377395752782, guid: ede51cbdab73daa4c9485853c71abb5a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925377395752782, guid: ede51cbdab73daa4c9485853c71abb5a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925377395752782, guid: ede51cbdab73daa4c9485853c71abb5a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925377395752782, guid: ede51cbdab73daa4c9485853c71abb5a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925377395752782, guid: ede51cbdab73daa4c9485853c71abb5a, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61299392382121684, guid: ede51cbdab73daa4c9485853c71abb5a,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114541773730650934, guid: ede51cbdab73daa4c9485853c71abb5a,
+        type: 2}
+      propertyPath: layerMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 95150120537901548, guid: ede51cbdab73daa4c9485853c71abb5a,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b3fa9fa81d39d344ca8ce5906b82f22c, type: 2}
+    - target: {fileID: 114541773730650934, guid: ede51cbdab73daa4c9485853c71abb5a,
+        type: 2}
+      propertyPath: isGrounded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114541773730650934, guid: ede51cbdab73daa4c9485853c71abb5a,
+        type: 2}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 317381458}
+    - target: {fileID: 114541773730650934, guid: ede51cbdab73daa4c9485853c71abb5a,
+        type: 2}
+      propertyPath: raycastStartPoint
+      value: 
+      objectReference: {fileID: 65811516}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ede51cbdab73daa4c9485853c71abb5a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1574386058
 GameObject:
   m_ObjectHideFlags: 0
@@ -18989,7 +19072,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1597375533}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19019,7 +19102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1602386261}
   - component: {fileID: 1602386262}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Trees 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19071,7 +19154,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1932722109
-  m_SortingLayer: -2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2db61daccc0aa9c409ea373530aa6bba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19508,7 +19591,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1655999033}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20741,7 +20824,7 @@ Transform:
   - {fileID: 1097587494}
   - {fileID: 753075157}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1796735322
 GameObject:
@@ -20898,7 +20981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1847270057}
   - component: {fileID: 1847270058}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Trees 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20950,7 +21033,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1932722109
-  m_SortingLayer: -2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2db61daccc0aa9c409ea373530aa6bba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -21586,7 +21669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1897864025}
   - component: {fileID: 1897864027}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: BackGround 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21638,7 +21721,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -970444639
-  m_SortingLayer: -3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec1e04f744c5f3b4e997048a4cfb235d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22003,7 +22086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1949873545}
   - component: {fileID: 1949873546}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: BackGround 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22055,7 +22138,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -970444639
-  m_SortingLayer: -3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec1e04f744c5f3b4e997048a4cfb235d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22138,7 +22221,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1973701215
 GameObject:
@@ -22591,7 +22674,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2008419732}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23986,7 +24069,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2099421359
 GameObject:
