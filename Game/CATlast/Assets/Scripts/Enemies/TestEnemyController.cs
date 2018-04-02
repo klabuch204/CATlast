@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class TestEnemyController : Character
 {
+    private const float CHECK_GROUND_RAY_MAX_DISTANCE = 0.7f;
+    private const float GROUND_RADIUS = 0.2f;
+    private Vector3 bottom = new Vector3(0, -1, 0);
+
     public float speed = 4.0f;
-    public Transform groundCheck;
-    private float groundRadius = 0.2f;
-    public LayerMask whatIsGround;
+    public Vector3 groundCheck;
+    public Vector3 raycastStartPoint;
+
     private bool isGrounded = false;
-    public Transform raycastStartPoint;
+
+
 
     public void Start()
     {
-        raycastStartPoint = transform.Find("RaycastStartPoint");
+        raycastStartPoint = transform.Find("RaycastStartPoint").position;
         DoSomethingNew(false);
     }
 
     public void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundCheck, GROUND_RADIUS);
     }
 
     public override void Die()
@@ -40,23 +45,17 @@ public class TestEnemyController : Character
         while (time > 0)
         {
             rigidbody.velocity = new Vector2(-1 * speed, rigidbody.velocity.y);
-            if (!Physics2D.Raycast(raycastStartPoint.position, new Vector3(0, -1), 0.7f))
+            if (!Physics2D.Raycast(raycastStartPoint, bottom, CHECK_GROUND_RAY_MAX_DISTANCE))
             {
                 StopAllCoroutines();
-                MomentalStop();
-                StartCoroutine("Wait", Random.Range(1.0f, 2.5f));
+                MomentalAnimationStop();
+                StartCoroutine(Wait(Random.Range(1.0f, 2.5f)));
             }
             time -= Time.deltaTime;
             yield return new WaitForSeconds(0.1f);
         }
-        MomentalStop();
+        MomentalAnimationStop();
         DoSomethingNew(false);
-    }
-
-    private void MomentalStop()
-    {
-        animator.SetFloat("Speed", 0);
-        animator.Play("idle");
     }
 
     /// <summary>
@@ -71,16 +70,16 @@ public class TestEnemyController : Character
         while (time > 0)
         {
             rigidbody.velocity = new Vector2(1 * speed, rigidbody.velocity.y);
-            if (!Physics2D.Raycast(raycastStartPoint.position, new Vector3(0, -1), 0.7f))
+            if (!Physics2D.Raycast(raycastStartPoint, bottom, CHECK_GROUND_RAY_MAX_DISTANCE))
             {
                 StopAllCoroutines();
-                MomentalStop();
-                StartCoroutine("Wait", Random.Range(1.0f, 2.5f));
+                MomentalAnimationStop();
+                StartCoroutine(Wait(Random.Range(1.0f, 2.5f)));
             }
             time -= Time.deltaTime;
             yield return new WaitForSeconds(0.1f);
         }
-        MomentalStop();
+        MomentalAnimationStop();
         DoSomethingNew(false);
     }
 
@@ -106,7 +105,7 @@ public class TestEnemyController : Character
         animator.SetFloat("Speed", 0);
         animator.Play("hit");
         yield return new WaitForSeconds(0.07f);
-        Wait(1.5f);
+        Wait(0.7f);
     }
 
     /// <summary>
@@ -115,9 +114,13 @@ public class TestEnemyController : Character
     private void Flip()
     {
         isFacedRight = !isFacedRight;
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
+        transform.localScale.Scale(new Vector3(1,-1,1));
+    }
+
+    private void MomentalAnimationStop()
+    {
+        animator.SetFloat("Speed", 0);
+        animator.Play("idle");
     }
 
     /// <summary>
@@ -125,39 +128,49 @@ public class TestEnemyController : Character
     /// </summary>
     private void DoSomethingNew(bool isCalledFromWait)
     {
+        var random = Random.Range(0.5f, 3.5f);
         if (isCalledFromWait & isGrounded)
-        {
-            if (!Physics2D.Raycast(raycastStartPoint.position, new Vector3(0, -1), 0.7f))
+        {            
+            if (Physics2D.Raycast(raycastStartPoint, bottom, CHECK_GROUND_RAY_MAX_DISTANCE))
             {
-                if (isFacedRight)
-                {
-                    StartCoroutine("WalkLeft", Random.Range(0.5f, 2.0f));
-                }
-                else
-                {
-                    StartCoroutine("WalkRight", Random.Range(0.5f, 2.0f));
-                }
+                WalkToRandomWay(random);
             }
             else
             {
-                switch (Random.Range(0, 2))
-                {
-                    case 0:
-                        StartCoroutine("WalkLeft", Random.Range(0.5f, 3.5f));
-                        break;
-                    case 1:
-                        StartCoroutine("WalkRight", Random.Range(0.5f, 3.5f));
-                        break;
-                }
+                WalkToOppositeSide(random);
             }
         }
         else
         {
-            StartCoroutine("Wait", Random.Range(2.0f, 4.5f));
+            StartCoroutine(Wait(random));
         }
     }
 
+    private void WalkToRandomWay(float time)
+    {
+        switch (Random.Range(0, 2))
+        {
+            case 0:
+                StartCoroutine(WalkLeft(time));
+                break;
+            case 1:
+                StartCoroutine(WalkRight(time));
+                break;
+        }
+    }
 
+    private void WalkToOppositeSide(float time)
+    {
+        StopAllCoroutines();
+        if (isFacedRight)
+        {
+            StartCoroutine(WalkLeft(time));
+        }
+        else
+        {
+            StartCoroutine(WalkRight(time));
+        }
+    }
 
     public override void RecieveDamage(float damage)
     {
@@ -175,22 +188,9 @@ public class TestEnemyController : Character
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Wall")
         {
-            collision.gameObject.SendMessage("RecieveDamage", 10.0f);
-        }
-        else if (collision.gameObject.tag == "Wall")
-        {
-            if (isFacedRight)
-            {
-                StopAllCoroutines();
-                StartCoroutine("WalkLeft", Random.Range(0.5f, 1.0f));
-            }
-            else
-            {
-                StopAllCoroutines();
-                StartCoroutine("WalkRight", Random.Range(0.5f, 1.0f));
-            }
+            WalkToOppositeSide(Random.Range(0.5f, 1.5f));
         }
     }
 }
