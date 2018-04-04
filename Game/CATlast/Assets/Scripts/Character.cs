@@ -7,7 +7,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     // Указывает, повернут ли объект вправо
-    public bool isFacedRight;
+    protected bool isFacedRight;
     // Параметр здоровья.
     public float HP = 100.0f;
     // Компонент аниматора для данного объекта.

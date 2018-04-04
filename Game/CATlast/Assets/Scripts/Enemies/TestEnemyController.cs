@@ -4,97 +4,96 @@ using UnityEngine;
 
 public class TestEnemyController : Character
 {
+    private const float CHECK_GROUND_RAY_MAX_DISTANCE = 0.7f;
+    private const float GROUND_RADIUS = 0.2f;
+    private Vector3 bottom = new Vector3(0, -1, 0);
+    private Vector3 minusX = new Vector3(-1, 1, 1);
+
     public float speed = 4.0f;
-    public Transform groundCheck;
-    private float groundRadius = 0.2f;
-    public LayerMask whatIsGround;
+
+    private GameObject groundCheck;
+    private GameObject raycastStartPoint;
     private bool isGrounded = false;
-    public Transform raycastStartPoint;
+    private bool lastActionWasWaiting = false;
+
+
 
     public void Start()
     {
-        raycastStartPoint = transform.Find("RaycastStartPoint");
-        DoSomethingNew(false);
+        groundCheck = transform.Find("GroundCheck").gameObject;
+        raycastStartPoint = transform.Find("RaycastStartPoint").gameObject;
+        DoSomethingNew();
+        InvokeRepeating("CheckMessage", 0, 1);
+    }
+
+    public void CheckMessage()
+    {
+        Debug.Log("See!");
     }
 
     public void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.transform.position, GROUND_RADIUS);
+        animator.SetBool("isGrounded", isGrounded);        
     }
 
     public override void Die()
     {
+        animator.SetBool("isDying", true);
         animator.Play("die");
-        Destroy(gameObject, 1.0f);
     }
 
-    /// <summary>
-    /// Объект бесцельно идёт ВЛЕВО time секунд
-    /// </summary>
-    /// <param name="time">Время, указывающее сколько объект будет ходить.</param>
-    /// <returns></returns>
-    IEnumerator WalkLeft(float time)
+    public void DestroyObject()
     {
+        Destroy(this.gameObject);
+    }   
+
+    /// <summary>
+    /// Объект бесцельно идёт ВПЕРЁД time секунд
+    /// </summary>
+    /// <param name="time">Время(сек.), указывающее сколько объект будет ходить.</param>
+    /// <returns></returns>
+    IEnumerator Walk(float time)
+    {
+        lastActionWasWaiting = false;
         animator.SetFloat("Speed", speed);
-        if (isFacedRight) Flip();
+        float direction;
         while (time > 0)
         {
-            rigidbody.velocity = new Vector2(-1 * speed, rigidbody.velocity.y);
-            if (!Physics2D.Raycast(raycastStartPoint.position, new Vector3(0, -1), 0.7f))
+            if (isFacedRight)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
+            rigidbody.velocity = new Vector2(direction * speed, rigidbody.velocity.y);
+            if (!Physics2D.Raycast(raycastStartPoint.transform.position, bottom, CHECK_GROUND_RAY_MAX_DISTANCE))
             {
                 StopAllCoroutines();
-                MomentalStop();
-                StartCoroutine("Wait", Random.Range(1.0f, 2.5f));
+                AnimationStop();
+                StartCoroutine(Wait(Random.Range(1.0f, 2.5f)));
             }
             time -= Time.deltaTime;
             yield return new WaitForSeconds(0.1f);
         }
-        MomentalStop();
-        DoSomethingNew(false);
-    }
-
-    private void MomentalStop()
-    {
-        animator.SetFloat("Speed", 0);
-        animator.Play("idle");
-    }
-
-    /// <summary>
-    /// Объект бесцельно идёт ВПРАВО time секунд
-    /// </summary>
-    /// <param name="time">Время, указывающее сколько объект будет ходить.</param>
-    /// <returns></returns>
-    IEnumerator WalkRight(float time)
-    {
-        animator.SetFloat("Speed", speed);
-        if (!isFacedRight) Flip();
-        while (time > 0)
-        {
-            rigidbody.velocity = new Vector2(1 * speed, rigidbody.velocity.y);
-            if (!Physics2D.Raycast(raycastStartPoint.position, new Vector3(0, -1), 0.7f))
-            {
-                StopAllCoroutines();
-                MomentalStop();
-                StartCoroutine("Wait", Random.Range(1.0f, 2.5f));
-            }
-            time -= Time.deltaTime;
-            yield return new WaitForSeconds(0.1f);
-        }
-        MomentalStop();
-        DoSomethingNew(false);
+        AnimationStop();
+        DoSomethingNew();
     }
 
     /// <summary>
     /// Объект стоит time секунд на месте.
     /// </summary>
-    /// <param name="time">Время, указывающее сколько объект будет стоять.</param>
+    /// <param name="time">Время(сек.), указывающее сколько объект будет стоять.</param>
     /// <returns></returns>
     IEnumerator Wait(float time)
     {
+        lastActionWasWaiting = true;
         animator.SetFloat("Speed", 0);
         rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
         yield return new WaitForSeconds(time);
-        DoSomethingNew(true);
+        DoSomethingNew();
     }
 
     /// <summary>
@@ -106,7 +105,13 @@ public class TestEnemyController : Character
         animator.SetFloat("Speed", 0);
         animator.Play("hit");
         yield return new WaitForSeconds(0.07f);
-        Wait(1.5f);
+        Wait(0.7f);
+    }
+
+    private void Jump()
+    {
+        AnimationStop();
+        rigidbody.AddForce(new Vector2(0, 600));
     }
 
     /// <summary>
@@ -115,49 +120,53 @@ public class TestEnemyController : Character
     private void Flip()
     {
         isFacedRight = !isFacedRight;
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
+        transform.localScale = Vector3.Scale(transform.localScale, minusX);
+    }
+
+    private void AnimationStop()
+    {
+        animator.SetFloat("Speed", 0);
+        animator.Play("idle");
     }
 
     /// <summary>
     /// Генерирует новое действие для объекта.
     /// </summary>
-    private void DoSomethingNew(bool isCalledFromWait)
+    private void DoSomethingNew()
     {
-        if (isCalledFromWait & isGrounded)
+        var random = Random.Range(1.0f, 3.0f);
+        if (!lastActionWasWaiting)
         {
-            if (!Physics2D.Raycast(raycastStartPoint.position, new Vector3(0, -1), 0.7f))
-            {
-                if (isFacedRight)
-                {
-                    StartCoroutine("WalkLeft", Random.Range(0.5f, 2.0f));
-                }
-                else
-                {
-                    StartCoroutine("WalkRight", Random.Range(0.5f, 2.0f));
-                }
-            }
-            else
-            {
-                switch (Random.Range(0, 2))
-                {
-                    case 0:
-                        StartCoroutine("WalkLeft", Random.Range(0.5f, 3.5f));
-                        break;
-                    case 1:
-                        StartCoroutine("WalkRight", Random.Range(0.5f, 3.5f));
-                        break;
-                }
-            }
+            StartCoroutine(Wait(random));
+            return;
         }
+        // Если перед ним есть поверхность
+        if (Physics2D.Raycast(raycastStartPoint.transform.position, bottom, CHECK_GROUND_RAY_MAX_DISTANCE))
+        {
+            WalkToRandomWay(random);
+        }
+        // Если перед ним нет поверхности
         else
         {
-            StartCoroutine("Wait", Random.Range(2.0f, 4.5f));
+            StopAllCoroutines();
+            Flip();
+            StartCoroutine(Walk(random));
         }
     }
 
-
+    private void WalkToRandomWay(float time)
+    {
+        switch (Random.Range(0, 2))
+        {
+            case 0:
+                StartCoroutine(Walk(time));
+                break;
+            case 1:
+                Flip();
+                StartCoroutine(Walk(time));
+                break;
+        }
+    }
 
     public override void RecieveDamage(float damage)
     {
@@ -165,6 +174,7 @@ public class TestEnemyController : Character
         HP -= damage;
         if (HP < float.Epsilon)
         {
+            HP = 0;
             Die();
         }
         else
@@ -175,22 +185,73 @@ public class TestEnemyController : Character
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Wall")
         {
-            collision.gameObject.SendMessage("RecieveDamage", 10.0f);
+            Flip();
         }
-        else if (collision.gameObject.tag == "Wall")
+        // VVV Тестовый код! VVV
+        else if (collision.gameObject.tag == "Player")
         {
-            if (isFacedRight)
-            {
-                StopAllCoroutines();
-                StartCoroutine("WalkLeft", Random.Range(0.5f, 1.0f));
-            }
-            else
-            {
-                StopAllCoroutines();
-                StartCoroutine("WalkRight", Random.Range(0.5f, 1.0f));
-            }
+            Jump();
         }
+        // ^^^ Тестовый код! ^^^
     }
+
+    // VVV Тестовый код! VVV
+    public void OnMouseDown()
+    {
+        RecieveDamage(25.0f);
+    }
+    // ^^^ Тестовый код! ^^^
+
 }
+
+///// <summary>
+///// Объект бесцельно идёт ВПРАВО time секунд
+///// </summary>
+///// <param name="time">Время(сек.), указывающее сколько объект будет ходить.</param>
+///// <returns></returns>
+//IEnumerator WalkRight(float time)
+//{
+//    animator.SetFloat("Speed", speed);
+//    if (!isFacedRight) Flip();
+//    while (time > 0)
+//    {
+//        rigidbody.velocity = new Vector2(1 * speed, rigidbody.velocity.y);
+//        if (!Physics2D.Raycast(raycastStartPoint, bottom, CHECK_GROUND_RAY_MAX_DISTANCE))
+//        {
+//            StopAllCoroutines();
+//            MomentalAnimationStop();
+//            StartCoroutine(Wait(Random.Range(1.0f, 2.5f)));
+//        }
+//        time -= Time.deltaTime;
+//        yield return new WaitForSeconds(0.1f);
+//    }
+//    MomentalAnimationStop();
+//    DoSomethingNew(false);
+//}
+
+///// <summary>
+///// Объект бесцельно идёт ВЛЕВО time секунд
+///// </summary>
+///// <param name="time">Время(сек.), указывающее сколько объект будет ходить.</param>
+///// <returns></returns>
+//IEnumerator WalkLeft(float time)
+//{
+//    animator.SetFloat("Speed", speed);
+//    if (isFacedRight) Flip();
+//    while (time > 0)
+//    {
+//        rigidbody.velocity = new Vector2(-1 * speed, rigidbody.velocity.y);
+//        if (!Physics2D.Raycast(raycastStartPoint, bottom, CHECK_GROUND_RAY_MAX_DISTANCE))
+//        {
+//            StopAllCoroutines();
+//            MomentalAnimationStop();
+//            StartCoroutine(Wait(Random.Range(1.0f, 2.5f)));
+//        }
+//        time -= Time.deltaTime;
+//        yield return new WaitForSeconds(0.1f);
+//    }
+//    MomentalAnimationStop();
+//    DoSomethingNew(false);
+//}
