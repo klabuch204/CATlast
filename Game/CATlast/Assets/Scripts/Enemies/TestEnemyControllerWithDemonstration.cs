@@ -25,6 +25,7 @@ public class TestEnemyControllerWithDemonstration : Character
     public void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+        Rewrite();
     }
 
     public override void Die()
@@ -221,5 +222,9 @@ public class TestEnemyControllerWithDemonstration : Character
     private void Rewrite()
     {
         textField.text = "Health: " + HP.ToString();
+        if (HP < float.Epsilon)
+        {
+            Die();
+        }
     }
 }

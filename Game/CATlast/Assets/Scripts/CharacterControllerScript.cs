@@ -5,10 +5,7 @@ public class CharacterControllerScript : Character
 {
     //переменная для установки макс. скорости персонажа
     public float maxSpeed = 5f;
-    //переменная для определения направления персонажа вправо/влево
-    
-
-
+   
     //находится ли персонаж на земле или в прыжке?
     private bool isGrounded = false;
     //ссылка на компонент Transform объекта
@@ -17,13 +14,10 @@ public class CharacterControllerScript : Character
     //радиус определения соприкосновения с землей
     private float groundRadius = 0.2f;
     //ссылка на слой, представляющий землю
-
-
+    private float punch1Radius = 1f;
+    public Transform punch1;
     public LayerMask whatIsGround;
 
-    /// <summary>
-    /// Начальная инициализация
-    /// </summary>
 
    
 
@@ -35,19 +29,23 @@ public class CharacterControllerScript : Character
     /// </summary>
     private void FixedUpdate()
     {
-
         //определяем, на земле ли персонаж
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
         //устанавливаем соответствующую переменную в аниматоре
         animator.SetBool("Ground", isGrounded);
+
+    
+        if (Input.GetKeyUp(KeyCode.X))
+        {
+            animator.SetBool("attack", false);
+
+        }
+
+
         //устанавливаем в аниматоре значение скорости взлета/падения
+
         animator.SetFloat("vSpeed", rigidbody.velocity.y);
         //если персонаж в прыжке - выход из метода, чтобы не выполнялись действия, связанные с бегом
-        /* if (!isGrounded)
-             return;
-             */
-
-
 
 
         //используем Input.GetAxis для оси Х. метод возвращает значение оси в пределах от -1 до 1.
@@ -100,7 +98,14 @@ public class CharacterControllerScript : Character
             //прикладываем силу вверх, чтобы персонаж подпрыгнул
             rigidbody.AddForce(new Vector2(0, 600));
         }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            animator.SetBool("attack", true);
+            Fight2D.Action(groundCheck.position, punch1Radius, 8, 10, false);
 
+
+
+        }
 
     }
 }
